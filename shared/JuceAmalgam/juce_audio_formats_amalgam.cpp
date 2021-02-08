@@ -273,6 +273,11 @@ namespace JuceDummyNamespace {}
 
  #undef PACKED
 
+#if JUCE_MSVC
+  #define fseeko fseek
+  #define ftello ftell
+#endif
+
  #if JUCE_MSVC
   #pragma warning (pop)
   #pragma warning (4: 4511 4512 4100 /*4365*/)  // (enable some warnings that are turned off in VC8)
@@ -756,7 +761,7 @@ namespace juce
 #endif
 
 #if defined (_MSC_VER) && _MSC_VER >= 1600
- #define JUCE_COMPILER_SUPPORTS_NOEXCEPT 0
+ #define JUCE_COMPILER_SUPPORTS_NOEXCEPT 1
  #define JUCE_COMPILER_SUPPORTS_NULLPTR 1
  #define JUCE_COMPILER_SUPPORTS_MOVE_SEMANTICS 1
 #endif
